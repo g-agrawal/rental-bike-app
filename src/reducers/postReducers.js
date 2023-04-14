@@ -1,4 +1,4 @@
-import { FETCH_POST, ADD_POST, DELETE_POST, SEARCH_POST } from "../actions/actionTypes";
+import { FETCH_POST, SELECT_PICKUP_ZONE, SELECT_DROP_ZONE } from "../actions/actionTypes";
 
 
 export default function postReducer (state =[], action) {
@@ -8,30 +8,14 @@ export default function postReducer (state =[], action) {
                 zones: action.payload.zones,
                 searchText: state.searchText
             };
-        case ADD_POST:
-            let posts = [...state.posts];
-            let postChanged = posts.find(post => post._id === action.payload._id);
-            if(postChanged) {
-                postChanged.title = action.payload.title;
-                postChanged.description = action.payload.description;
-                return {
-                    posts: posts,
-                    searchText: state.searchText
-                };
-            } 
-            return {
-                posts: [action.payload, ...state.posts],
-                searchText: state.searchText
-            };
-        case DELETE_POST:
-            return {
-                posts: state.posts.filter(post => post._id !== action.payload._id),
-                searchText: state.searchText
-            };
-        case SEARCH_POST:
+        case SELECT_PICKUP_ZONE:
             return {
                 ...state,
-                searchText: action.payload.searchText
+                pickupZone: action.payload.zone
+            };
+        case SELECT_DROP_ZONE:
+            return {
+                pickupZone: action.payload.zone
             };
         default:
             return {

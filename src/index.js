@@ -9,7 +9,6 @@ import postReducer from './reducers/postReducers'
 import { fetchAllPost } from './actions/postAction'
 
 const store = createStore(postReducer, applyMiddleware(thunk));
-store.dispatch(fetchAllPost());
 
 ReactDOM.render(
     <Provider store={store}>

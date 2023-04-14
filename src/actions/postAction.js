@@ -10,9 +10,21 @@ export const fetchAllPostSuccess = (zones) => {
     }
 } 
 
-export const fetchAllPost = () => {
+export const selectPickupZoneSuccess = (zone) => {
+    return {
+        type: FETCH_POST,
+        payload: {
+            zone
+        }
+    }
+} 
+
+export const getNearZones = (lat, lng) => {
     return (dispatch) => {
-        return axios.get('http://localhost:8080/zones/nearBy')
+        console.log('curr - ' + lat);
+        const url = 'http://localhost:8080/zones/nearBy?lat=' + lat + '&lng=' + lng;
+        console.log('url', url);
+        return axios.get(url)
             .then(res => {
                 console.log(res);
                 dispatch(fetchAllPostSuccess(res.data));
@@ -23,28 +35,13 @@ export const fetchAllPost = () => {
     };
 };
 
-export const addPostSuccess = (post) => {
-    return {
-        type: ADD_POST,
-        payload: {
-            _id: post._id,
-            title: post.title,
-            description: post.description
-        }
-    }
-}
-
-export const addPost = (post) => {
+export const selectPickupZone = (zone) => {
     return (dispatch) => {
-        return axios.post('/addPost', post)
-            .then(res => {
-                dispatch(addPostSuccess(res.data));
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        console.log('curr - ');
+        console.log(zone);
+        return dispatch(selectPickupZoneSuccess(zone));
     };
-};
+} 
 
 export const deletePostSuccess = (_id) => {
     return {

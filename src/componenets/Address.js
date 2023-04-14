@@ -7,7 +7,7 @@ import './style.css';
 import axios from 'axios'
 
 const SEARCH_URI = 'http://localhost:8081/address/search';
-const Address = () => {
+const Address = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const handleSearch = (query) => {
@@ -29,23 +29,6 @@ const Address = () => {
               console.log(err);
           });
   };
-  const _renderMenu = (results, menuProps) => {
-    const items = results.map((result, index) => {
-      if (result.divider === true) {
-        return <li key={index} role="separator" className="divider"/>;
-      }
-      if (result.header === true) {
-        return <li key={index} className="dropdown-header">{result.name}</li>;
-      }
-      return (
-        <MenuItem key={index} option={result}>
-          <strong>{result.name}</strong>
-          <div>{result.completeAddress}</div>
-        </MenuItem>
-      );
-    });
-    return <Menu {...menuProps}>{items}</Menu>;
-  };
 
   const filterBy = () => true;
 
@@ -55,7 +38,7 @@ const Address = () => {
       id="async-example"
       isLoading={isLoading}
       labelKey={option => `${option.name} ${option.completeAddress}`}
-      minLength={2}
+      minLength={1}
       onSearch={handleSearch}
       options={options}
       renderMenu={(results, menuProps) => (
@@ -78,7 +61,8 @@ const Address = () => {
       useCache={false}
       placeholder='Enter destination'
       onChange={(selected) => {
-        console.log(selected[0]?.lat + ' ' + selected[0]?.lat );
+        console.log('selected', selected);
+        props.selectAddress(selected[0]);
       }}
     />
   );
