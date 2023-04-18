@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { AsyncTypeahead, Menu, MenuItem} from 'react-bootstrap-typeahead';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
@@ -11,8 +11,11 @@ const SEARCH_URI = configData.ADDRESS_SERVER_URI;
 const Address = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
+  const timeout = useRef()
   const handleSearch = (query) => {
+    clearTimeout(timeout.current);
     setIsLoading(true);
+    timeout.current = setTimeout(() => {
     axios.get(`${SEARCH_URI}?text=${query}`)
           .then(res => {
               console.log(res);
@@ -29,6 +32,7 @@ const Address = (props) => {
           .catch(err => {
               console.log(err);
           });
+    }, 10);
   };
 
   const filterBy = () => true;

@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+title {
+  display: none;
+}
+
 textarea { 
   height: auto; 
 }
