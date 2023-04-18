@@ -5,8 +5,9 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import 'react-bootstrap-typeahead/css/Typeahead.bs5.css';
 import './style.css';
 import axios from 'axios'
+import configData from '../config/config.json'
 
-const SEARCH_URI = 'http://localhost:8080/address/search';
+const SEARCH_URI = configData.ADDRESS_SERVER_URI;
 const Address = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);

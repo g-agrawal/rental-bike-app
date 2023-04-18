@@ -1,0 +1,4 @@
+{
+    "ZONE_SERVER_URL": "http://localhost:8080/zones/nearBy?lat=",
+    "ADDRESS_SERVER_URI": "http://localhost:8080/address/search"
+}

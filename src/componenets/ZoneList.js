@@ -6,13 +6,14 @@ import editImage from '../Images/editImage.png'
 import { getNearZones, selectPickupZone } from '../actions/postAction'
 import PickupContext from '../context/PickupContext'
 import axios from 'axios'
+import configData from '../config/config.json'
 
 const ZoneList = (props) =>  {
     console.log('props are - ', props);
     const [zones, setZones] = useState([]);
     
     useEffect(() => {
-        const url = 'http://localhost:8080/zones/nearBy?lat=' + props.lat + '&lng=' + props.lng;
+        const url = configData.ZONE_SERVER_URL + props.lat + '&lng=' + props.lng;
         const fetchData = async () => {
           try {
             const { data: response } = await axios.get(url);
