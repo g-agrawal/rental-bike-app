@@ -6,7 +6,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.bs5.css';
 import './style.css';
 import axios from 'axios'
 
-const SEARCH_URI = 'http://localhost:8081/address/search';
+const SEARCH_URI = 'http://localhost:8080/address/search';
 const Address = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);

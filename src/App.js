@@ -12,6 +12,7 @@ import RideEstimate from './componenets/RideEstimate';
 import PickupContext from './context/PickupContext';
 import DropContext from './context/DropContext';
 import PickupZone from './componenets/PickupZone';
+import { Redirect } from 'react-router';
 
 function App() {
   const [pickupZone, setPickupZone] = useState(null);
@@ -22,7 +23,9 @@ function App() {
         <BrowserRouter>
           <div className="App">
             <Switch>
-              <Route exact path ='/' component={ZoneList} />
+              <Route exact path ='/' >
+                <Redirect to ='/pickupzone?lat=3.123456&lng=4.123456' />
+              </Route>
               <Route exact path ='/pickupzone' component={PickupZone} />
               <Route exact path ='/dropzone' component={DropZone} />
               <Route exact path ='/estimateride' component={RideEstimate} />

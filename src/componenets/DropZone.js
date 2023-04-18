@@ -27,7 +27,7 @@ const DropZone = () => {
                     <h5 className="card-title text-primary">{pickupZone.name}</h5>
                     <p className="card-text">{pickupZone.completeAddress}</p>                            
                 </div>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column zonePosition">
                     <Link to="/zones">
                         <button className="nav-link btn btn-outline-success btn-sm my-2 my-sm-0">Direction</button>
                     </Link>
@@ -41,7 +41,10 @@ const DropZone = () => {
             </div>
             <div>
                 { address ? (
-                    <ZoneList lat={address.lat} lng={address.lng} selectZone={selectZone} redirect='/estimateride'/>
+                    <div>
+                        <div className="infotext droptext">Plese select drop zone</div>
+                        <ZoneList lat={address.lat} lng={address.lng} selectZone={selectZone} redirect='/estimateride'/>
+                    </div>
                 ) : (
                     <div>please select address</div>
                 )}

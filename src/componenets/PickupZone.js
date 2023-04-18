@@ -9,14 +9,17 @@ import ZoneList from './ZoneList'
 import PickupContext from '../context/PickupContext'
 
 const PickupZone = () => {
-
+    const queryParameters = new URLSearchParams(window.location.search)
+    const lat = queryParameters.get("lat");
+    const lng = queryParameters.get("lng");
     const {pickupZone, setPickupZone} = useContext(PickupContext);
     const selectZone = (zone) => {
         setPickupZone(zone);
     }
     return (
         <div>
-            <ZoneList lat={1.2} lng={4.6} selectZone={selectZone} redirect='/dropzone'/>
+            <div className="infotext">Plese select pickup zone</div>
+            <ZoneList lat={lat} lng={lng} selectZone={selectZone} redirect='/dropzone'/>
         </div>
         
     );

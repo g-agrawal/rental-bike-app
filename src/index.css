@@ -123,3 +123,19 @@ input:focus {
   margin-left: 100px;
 }
 
+.zonePosition {
+  padding-top: 50px;
+  margin-right: 5px;
+}
+
+.infotext {
+  color: #28a745;
+  font-size: large;
+  margin-left: 40px;
+  margin-bottom: -50px;
+}
+
+.droptext {
+  margin-top: 20px;
+  margin-bottom: -60px;
+}
